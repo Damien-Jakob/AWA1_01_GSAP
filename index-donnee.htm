@@ -19,7 +19,13 @@
 
     <script>
         $(window).load(function () {
+                // Animation of the icon
                 TweenMax.from($("#icon path"), 3, {drawSVG: "0%"});
+                //TweenMax.fromTo($("#icon path"), 3, {drawSVG: "0%"}, {drawSVG: "100%"});
+
+                // How does it work ????
+                //TweenMax.staggerFrom("#icon", 2, {drawSVG: "0"}, 0.2);
+
             }
         );
     </script>
