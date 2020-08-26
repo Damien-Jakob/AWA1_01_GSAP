@@ -20,16 +20,18 @@
 
     <script>
         $(window).load(function () {
+            const timeline = new TimelineMax();
+
             // Animation of the icon
             // 3s to draw the elements
             //TweenMax.from("#icon path", 3, {drawSVG: "0%"});
             // 3s to draw each element
             // element 2 waits 0.5s after the start of element 1, etc...
-            TweenMax.staggerFrom("#icon path", 3, {drawSVG: "0"}, 0.5);
+            timeline.staggerFrom("#icon path", 3, {drawSVG: "0"}, 0.5);
 
             // If we want a special destination
             //TweenMax.fromTo("#icon path", 3, {drawSVG: "0%"}, {drawSVG: "100%"});
-            
+
             // Animation of the title
             // split the text in words
             // type: "chars,words,lines"
@@ -39,7 +41,7 @@
             // no disappearing during the animation
             // elastic animation
             // element 2 waits 0.2s after the start of element 1, etc...
-            TweenMax.staggerFrom(textSplit.words, 2.5, {y: 200, autoAlpha: 0, ease: Elastic.easeOut}, 0.2);
+            timeline.staggerFrom(textSplit.words, 2.5, {y: 200, autoAlpha: 0, ease: Elastic.easeOut}, 0.2);
         });
     </script>
 
