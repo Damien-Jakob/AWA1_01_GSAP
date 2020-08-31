@@ -34,11 +34,13 @@
             // remove the border
             timeline.to("#codeAscreen .icon", 0, {fill: "white", stroke: "none"});
             // Add label to base some events here
-            timeline.add("transformIcon");
+            const transformIconLabel = "transformIcon";
+            timeline.add(transformIconLabel);
             // Transform svg path #codegauche into #screengauche
-            timeline.to("#codegauche", .5, {morphSVG: "#screengauche"}, "transformIcon");
-            timeline.to("#codecentre", .5, {morphSVG: "#screencentre"}, "transformIcon");
-            timeline.to("#codedroite", .5, {morphSVG: "#screendroite"}, "transformIcon");
+            const morphTime = .5;
+            timeline.to("#codegauche", morphTime, {morphSVG: "#screengauche"}, transformIconLabel);
+            timeline.to("#codecentre", morphTime, {morphSVG: "#screencentre"}, transformIconLabel);
+            timeline.to("#codedroite", morphTime, {morphSVG: "#screendroite"}, transformIconLabel);
 
             // If we want a special destination
             //TweenMax.fromTo("#icon path", 3, {drawSVG: "0%"}, {drawSVG: "100%"});
