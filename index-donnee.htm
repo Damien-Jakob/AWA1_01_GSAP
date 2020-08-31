@@ -43,8 +43,8 @@
             // element 2 waits 0.2s after the start of element 1, etc...
             timeline.staggerFrom(textSplit.words, 2, {y: 200, autoAlpha: 0, ease: Elastic.easeOut, }, 0.2);
 
-            // Animation of the menu
-            TweenMax.staggerFrom('#myNavbar li', 2, {x: -100, autoAlpha: 0, ease: Elastic.easeOut}, 0.2)
+            // Animation of the boxes
+            TweenMax.staggerFrom('.box', 2, {y: 100, autoAlpha: 0, ease: Elastic.easeOut}, 0.2);
         });
     </script>
 
