@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="scripts/plugins/DrawSVGPlugin.min.js"></script>
     <script src="scripts/utils/SplitText.min.js"></script>
+    <script src="scripts/plugins/MorphSVGPlugin.min.js"></script>
     <!--
     <script src="scripts/plugins/BezierPlugin.min.js"></script>
     -->
@@ -27,12 +28,18 @@
             //TweenMax.from("#icon path", 3, {drawSVG: "0%"});
             // 3s to draw each element
             // element 2 waits 0.5s after the start of element 1, etc...
-            timeline.staggerFrom("#icon path", 0.7, {drawSVG: "0"}, 0.2);
+            timeline.staggerFrom("#codeAscreen .icon", 0.7, {drawSVG: "0"}, 0.2);
             // in 0s (note that the animation in not really good if we try to it in some time)
             // fills the icon in white
             // remove the border
-            timeline.to("#icon path", 0, {fill: "white", stroke: "none"});
-            
+            timeline.to("#codeAscreen .icon", 0, {fill: "white", stroke: "none"});
+            // Add label to base some events here
+            timeline.add("transformIcon");
+            // Transform svg path #codegauche into #screengauche
+            timeline.to("#codegauche", .5, {morphSVG: "#screengauche"}, "transformIcon");
+            timeline.to("#codecentre", .5, {morphSVG: "#screencentre"}, "transformIcon");
+            timeline.to("#codedroite", .5, {morphSVG: "#screendroite"}, "transformIcon");
+
             // If we want a special destination
             //TweenMax.fromTo("#icon path", 3, {drawSVG: "0%"}, {drawSVG: "100%"});
 
@@ -45,7 +52,7 @@
             // no disappearing during the animation
             // elastic animation
             // element 2 waits 0.2s after the start of element 1, etc...
-            timeline.staggerFrom(textSplit.words, 2, {scale: 1.8, autoAlpha: 0, ease: Elastic.easeOut, }, 0.2);
+            timeline.staggerFrom(textSplit.words, 2, {scale: 1.8, autoAlpha: 0, ease: Elastic.easeOut,}, 0.2);
 
             // Animation of the boxes
             // starts at 0.5 final size
@@ -189,6 +196,10 @@
             height: 400px;
         }
 
+        #codeAscreen .screen {
+            visibility: hidden;
+        }
+
     </style>
 </head>
 <body>
@@ -231,35 +242,26 @@
              xmlns:xlink="http://www.w3.org/1999/xlink"
              x="0px" y="0px" width="200px" height="150px" viewBox="-120 87.1 150 130" xml:space="preserve">
             <g id="formes" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round">
-                <path id="screengauche"
+                <path id="codegauche" class="icon"
+                      d="M-69.4,114.1l-4.4,2.9l-33.3,20.8l-3.9,2.3v17.7l3.9,2.3l33.3,20.8l4.4,2.9V164L-93.5,149l24.2-15.1C-69.4,133.9-69.4,114.1-69.4,114.1z"/>
+                <path id="codecentre" class="icon"
+                      d="M-44.7,99.1L-61,197.5l-0.3,1.3h17.1l16.4-98.5l0.3-1.3C-27.5,99.1-44.7,99.1-44.7,99.1z"/>
+                <path id="codedroite" class="icon"
+                      d="M-18.6,134L-18.6,134l24.2,15.1l-24.2,15.1v19.7l4.4-2.9L19,160.2l3.9-2.3v-17.7l-3.9-2.3l-33.3-20.8l-4.4-2.9V134z"/>
+                <path id="screengauche" class="screen"
                       d="M-65.9,140.6h-35.7c-0.8,0-1.5,0.7-1.5,1.5v43c0,0.8,0.7,1.5,1.5,1.5h35.7c0.8,0,1.5-0.7,1.5-1.5v-43C-64.4,141.2-65.1,140.6-65.9,140.6z M-88.3,142.2h9c0.3,0,0.7,0.3,0.7,0.7c0,0.3-0.3,0.7-0.7,0.7h-9c-0.3,0-0.7-0.3-0.7-0.7S-88.6,142.2-88.3,142.2z M-83.8,184.9c-1.3,0-2.5-1.2-2.5-2.5c0-1.3,1.2-2.5,2.5-2.5c1.3,0,2.5,1.2,2.5,2.5C-81.3,183.9-82.4,184.9-83.8,184.9z M-66.9,177.2c0,0.7-0.5,1.2-1.2,1.2h-31.3c-0.7,0-1.2-0.5-1.2-1.2v-30.3c0-0.7,0.5-1.2,1.2-1.2h31.3c0.7,0,1.2,0.5,1.2,1.2V177.2z"/>
-                <path id="screencentre"
+                <path id="screencentre" class="screen"
                       d="M-57.9,177.2h11.2c0.7,0,1.2,0.5,1.2,1.2v3.7c0,0.7-0.5,1.2-1,1.2c-6.8,1-11.7,3.2-11.7,5.7
                 c0,3.5,8.8,6.2,19.5,6.2c10.8,0,19.5-2.8,19.5-6.2c0-2.5-4.8-4.7-11.7-5.7c-0.7-0.2-1-0.7-1-1.2v-3.7c0-0.7,0.5-1.2,1.2-1.2h17.2
                 c0.8,0,1.5-0.7,1.5-1.5v-3.7c0-0.8-0.7-1.5-1.5-1.5h-44.3c-0.8,0-1.5,0.7-1.5,1.5v3.7C-59.4,176.4-58.7,177.2-57.9,177.2z
                  M-0.7,105.1h-76.3c-5.2,0-9.3,4.2-9.3,9.3v20.2c0,0.7,0.5,1,1,1h4.5c0.7,0,1-0.5,1-1v-19c0-2.2,1.8-4,4-4h73.7c2.2,0,4,1.8,4,4
                 v32.8c0,0.7,0.5,1,1,1h4.5c0.7,0,1-0.5,1-1v-34.2C8.6,109.2,4.4,105.1-0.7,105.1z"/>
-                <path id="screendroite"
+                <path id="screendroite" class="screen"
                       d="M13.9,154.4H-5.9c-0.7,0-1.3,0.7-1.3,1.3v35c0,0.7,0.7,1.3,1.3,1.3h19.8c0.7,0,1.3-0.7,1.3-1.3v-35
                 C15.3,155.1,14.6,154.4,13.9,154.4z M-0.1,155.9h8.2c0.3,0,0.7,0.3,0.7,0.7s-0.3,0.7-0.7,0.7h-8.2c-0.3,0-0.7-0.3-0.7-0.7
                 C-0.7,156.2-0.4,155.9-0.1,155.9z M3.9,190.7c-1.3,0-2.3-1-2.3-2.3c0-1.3,1-2.3,2.3-2.3s2.3,1,2.3,2.3
                 C6.2,189.7,5.3,190.7,3.9,190.7z M12.9,183.6c0,0.5-0.5,1-1,1H-3.9c-0.5,0-1-0.5-1-1v-23.3c0-0.5,0.5-1,1-1h15.8c0.5,0,1,0.5,1,1
                 V183.6z"/>
-            </g>
-        </svg>
-    </div>
-
-    <div>
-        <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink"
-             x="0px" y="0px" width="200px" height="150px" viewBox="-120 87.1 150 130" xml:space="preserve">
-            <g id="formes" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round">
-                <path id="codegauche"
-                      d="M-69.4,114.1l-4.4,2.9l-33.3,20.8l-3.9,2.3v17.7l3.9,2.3l33.3,20.8l4.4,2.9V164L-93.5,149l24.2-15.1C-69.4,133.9-69.4,114.1-69.4,114.1z"/>
-                <path id="codecentre"
-                      d="M-44.7,99.1L-61,197.5l-0.3,1.3h17.1l16.4-98.5l0.3-1.3C-27.5,99.1-44.7,99.1-44.7,99.1z"/>
-                <path id="codedroite"
-                      d="M-18.6,134L-18.6,134l24.2,15.1l-24.2,15.1v19.7l4.4-2.9L19,160.2l3.9-2.3v-17.7l-3.9-2.3l-33.3-20.8l-4.4-2.9V134z"/>
             </g>
         </svg>
         <h2 id="titre">Technicien Informatique Option Développement</h2>
