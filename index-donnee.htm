@@ -27,7 +27,7 @@
             //TweenMax.from("#icon path", 3, {drawSVG: "0%"});
             // 3s to draw each element
             // element 2 waits 0.5s after the start of element 1, etc...
-            timeline.staggerFrom("#icon path", 1, {drawSVG: "0"}, 0.2);
+            timeline.staggerFrom("#icon path", 0.7, {drawSVG: "0"}, 0.2);
 
             // If we want a special destination
             //TweenMax.fromTo("#icon path", 3, {drawSVG: "0%"}, {drawSVG: "100%"});
@@ -37,11 +37,11 @@
             // type: "chars,words,lines"
             const textSplit = new SplitText('#titre', {type: "words"});
             // 2.5s for the word to reach destination
-            // start 200px lower on the y axis
+            // starts at 1.8 final size
             // no disappearing during the animation
             // elastic animation
             // element 2 waits 0.2s after the start of element 1, etc...
-            timeline.staggerFrom(textSplit.words, 2, {y: 200, autoAlpha: 0, ease: Elastic.easeOut, }, 0.2);
+            timeline.staggerFrom(textSplit.words, 2, {scale: 1.8, autoAlpha: 0, ease: Elastic.easeOut, }, 0.2);
 
             // Animation of the boxes
             // starts at 0.5 final size
